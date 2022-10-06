@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    <link href="headers.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">cliente</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cliente">cliente</a>
+                    </li>
+
+                    <li class="nav-item">
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            perfil
+                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
+                                class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="/perfil.html">perfil</a></li>
+                            <li><a class="dropdown-item" href="#">chat</a></li>
+                            <li><a class="dropdown-item" href="#">configuracion</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/logout">cerrar sesion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 py-4 bg-white">
+                <h2>citas</h2>
+
+
+                <form action="/registrocita" method="POST">
+
+
+                    <div class="mb-3">
+                        <label for="id" class="form-label mb-3">identificacion</label>
+                        <input type="text" class="form-control" name="cedula" readonly value="{{ session['id'] }}" />
+                    </div>
+
+
+
+
+                    <div class="mb-3">
+
+                        <select class="form-control" name="cita">
+
+                            <option value="" selected="selectecita"> - selecccionar psicologo
+                                -
+                            </option>
+                            {% for c in verps%}
+
+                            <option >{{c}}</option>
+                            {%endfor%}
+                        </select>
+
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">fecha</label>
+                        <input type="datetime-local" min="2022-08-12" class="form-control" name="fecha" min="autofocus"
+                            autofocus>
+                    </div>
+
+
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success" type="submit"
+                            onclick="alert( 'tu cita a sido agendada\n ATT: Atencion al ciudadano') ">agendar cita
+                        </button>
+                        <button class="btn btn-secondary">Limpiar</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 py-4 bg-white">
+                <h2>Listado de citas</h2>
+
+                <table class="table table-dark table-striped overflow-auto">
+                    <thead>
+                        <tr>
+                            <th class="centrado">id</th>
+                            <th class="centrado">psicologo</th>
+                            <th class="centrado">fecha cita</th>
+                            <th class="centrado">Opciones</th>
+
+
+
+                        </tr>
+                    </thead>
+                    {% for cita in datoscita %}
+                    <tbody>
+
+                        <tr>
+
+                            <td class="centrado">{{cita.1}}</td>
+                            <td class="centrado">{{cita.2}}</td>
+                            <td class="centrado">{{cita.3}}</td>
+                           
+                            <td class="centrado"><button class="btn btn-primary">editar</button>
+                            </td>
+                          
+
+                        </tr>
+
+                        {% endfor %}
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

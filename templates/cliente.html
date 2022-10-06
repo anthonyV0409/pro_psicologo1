@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+
+
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container-fluid  ">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">cliente</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/datoscita">citas</a>
+                        </li>
+
+                        <li class="nav-item">
+
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                perfil
+                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
+                                    class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="/perfil.html">perfil</a></li>
+                                <li><a class="dropdown-item" href="#">chat</a></li>
+                                <li><a class="dropdown-item" href="#">configuracion</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/logout">cerrar sesion</a></li>
+                            </ul>
+                        </li>
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+
+
+
+
+
+        <div class="container my-3">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 py-4 bg-white">
+
+
+                    <h2 class=" text-dark"> </h2>
+                    <img src="static/img/frases-psicologia.jpg" width="350">
+
+
+                </div>
+                <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 py-4 bg-white">
+                    <h2> historial psicologico</h2>
+                    <table class="table table-dark table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="centrado">id_cita</th>
+                                <th class="centrado">id_cliente</th>
+                                <th class="centrado">motivo</th>
+
+                                <th class="centrado">Opciones</th>
+
+
+                            </tr>
+                        </thead>
+
+                        {%for histo in datosh%}
+                        <tbody>
+                            <tr>
+                                <td class="centrado">{{histo.0}}</td>
+                                <td class="centrado">{{histo.1}} </td>
+                                <td class="centrado">{{histo.2}} </td>
+                                <td class="centrado"><button
+                                        type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdropp">
+                                        ver
+                                    </button></td>
+
+                            </tr>
+
+                            {%endfor%}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="modal fade" id="staticBackdropp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">formulario historial</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        {%for histo in datosh%}
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-5 col-lg-6 col-xl-6 py-6 bg-white">
+
+
+
+
+                                <div class="mb-3">
+                                    <label for="id" class="form-label ">id</label>
+                                    <input type="text" class="form-control" name="cedula" autofocus required=" "
+                                        readonly value="{{histo.1}}" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">motivo</label>
+                                    <textarea class="form-control" name="motivo" placeholder="motivo" rows="1"
+                                        required=" " readonly>{{histo.2}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">habitos</label>
+                                    <textarea class="form-control" name="habitos" placeholder="habitos" rows="1"
+                                        required=" " readonly>{{histo.3}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">comportamiento</label>
+                                    <textarea class="form-control" name="comportamiento" placeholder="comportamiento"
+                                        rows="1" required=" " readonly>{{histo.4}}</textarea>
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="col-sm-12 col-md-5 col-lg-6 col-xl-6 py-6 bg-white">
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">seguimiento</label>
+                                    <textarea class="form-control" name="seguimiento" placeholder="seguimiento" rows="1"
+                                        required=" " readonly>{{histo.5}}</textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">alergias</label>
+                                    <textarea class="form-control" name="alergias" placeholder="alergias" rows="1"
+                                        required=" " readonly>{{histo.6}}</textarea>
+                                </div>
+
+                                <div class="mb-1">
+                                    <label for="descripcion" class="form-label">tratamiento</label>
+                                    <textarea class="form-control" name="tratamiento" placeholder="tratamiento" rows="1"
+                                        required=" " readonly>{{histo.7}}</textarea>
+
+                                </div>
+
+                                <button class="btn btn-success">descargar </button>
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">salir</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>
