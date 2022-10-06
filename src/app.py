@@ -1,7 +1,7 @@
 
 from re import template
 from flask import Flask, redirect, render_template, request, session, url_for
-from conexion import *
+
 
 app = Flask(__name__)
 app.secret_key = 'id_usuario'
